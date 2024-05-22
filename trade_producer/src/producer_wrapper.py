@@ -12,9 +12,13 @@ class ProducerWrapper:
     Wrapper around the Quix Streams Producer
     """
 
-    def __init__(self, kafka_topic: str):
+    def __init__(self, kafka_topic: str, use_local: bool):
 
-        app = Application(broker_address=os.getenv("KAFKA_BROKER_ADDRESS", None))
+        if use_local:
+            app = Application(broker_address=os.getenv("KAFKA_BROKER_ADDRESS", None))    
+        else:
+            app = Application()
+            
         self._topic = app.topic(name=kafka_topic, value_serializer="json")
         self._producer = app.get_producer()
 
