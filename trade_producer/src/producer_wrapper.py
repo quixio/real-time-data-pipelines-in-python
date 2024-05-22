@@ -4,7 +4,8 @@ import json
 import logging
 
 from quixstreams.kafka import Producer
-from quixstreams.platforms.quix import QuixKafkaConfigsBuilder, TopicCreationConfigs
+from quixstreams.platforms.quix import QuixKafkaConfigsBuilder
+from quixstreams.platforms.quix.config import TopicCreationConfigs
 
 logger = logging.getLogger()
 
