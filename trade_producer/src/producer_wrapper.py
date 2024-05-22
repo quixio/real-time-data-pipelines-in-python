@@ -5,7 +5,7 @@ import logging
 
 from quixstreams.kafka import Producer
 from quixstreams.platforms.quix import QuixKafkaConfigsBuilder, TopicCreationConfigs
-sdfsdfdf
+
 logger = logging.getLogger()
 
 class ProducerWrapper:
