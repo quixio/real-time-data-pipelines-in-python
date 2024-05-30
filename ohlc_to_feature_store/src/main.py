@@ -48,7 +48,7 @@ def run():
         sdf = app.dataframe(topic=input_topic).update(
             lambda value: feature_group.write(value, keys=keys)
         )
-    except e as Exception:
+    except Exception as e:
         print(e)
 
     app.run(sdf)
