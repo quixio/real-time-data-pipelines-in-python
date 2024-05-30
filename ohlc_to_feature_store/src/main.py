@@ -29,7 +29,7 @@ def run():
     """
     # Define Quix your application and settings
     app = get_app(
-        consumer_group='json_ohlc_consumer_group',
+        consumer_group='json_ohlc_consumer_group2',
         use_local_kafka=USE_LOCAL_KAFKA,    
     )
     
@@ -44,7 +44,7 @@ def run():
 
     def publish_to_hopsworks(data):
         keys = ['timestamp', 'product_id', 'open', 'high', 'low', 'close']
-        
+
         del data["start"]
         del data["end"]
 
