@@ -55,7 +55,8 @@ class FeatureView:
 
         return self._fv.get_feature_vectors(
             entry=primary_keys,
-            return_type="pandas"
+            return_type="pandas",
+            allow_missing=True
         )
         
         # return self._fv.get_feature_vectors(entry=primary_keys,return_type="pandas")
