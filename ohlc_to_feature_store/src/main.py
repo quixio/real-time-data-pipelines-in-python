@@ -12,8 +12,6 @@ from src.app_factory import get_app
 logger = logging.getLogger()
 load_env_vars()
 
-print(os.environ)
-
 KAFKA_INPUT_TOPIC = os.environ["input"]
 USE_LOCAL_KAFKA = True if os.environ.get('use_local_kafka') is not None else False
 OHLC_FEATURE_GROUP = FeatureGroupConfig(
