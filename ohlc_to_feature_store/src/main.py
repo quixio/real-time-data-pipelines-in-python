@@ -42,10 +42,9 @@ def run():
     # Create a feature group in the Feature Store
     feature_group = feature_store.get_or_create_feature_group(OHLC_FEATURE_GROUP)
 
-    keys = ['timestamp', 'product_id', 'open', 'high', 'low', 'close']
-
     def publish_to_hopsworks(data):
-        global keys
+        keys = ['timestamp', 'product_id', 'open', 'high', 'low', 'close']
+        
         del data["start"]
         del data["end"]
 
