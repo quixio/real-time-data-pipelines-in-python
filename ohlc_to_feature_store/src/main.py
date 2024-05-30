@@ -42,11 +42,14 @@ def run():
     # Create a feature group in the Feature Store
     feature_group = feature_store.get_or_create_feature_group(OHLC_FEATURE_GROUP)
 
-    # Create a StreamingDataFrame and push incoming messages to the FeatureStore using a custom function
-    keys = ['timestamp', 'product_id', 'open', 'high', 'low', 'close']
-    sdf = app.dataframe(topic=input_topic).update(
-        lambda value: feature_group.write(value, keys=keys)
-    )
+    try:
+        # Create a StreamingDataFrame and push incoming messages to the FeatureStore using a custom function
+        keys = ['timestamp', 'product_id', 'open', 'high', 'low', 'close']
+        sdf = app.dataframe(topic=input_topic).update(
+            lambda value: feature_group.write(value, keys=keys)
+        )
+    except e as Exception:
+        print(e)
 
     app.run(sdf)
 
