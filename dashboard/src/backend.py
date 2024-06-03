@@ -72,12 +72,19 @@ def get_features(
         current_unix_seconds,
         product_ids)
     
+    logger.info("First 10 primary keys:", primary_keys[:10])
     logger.info(f'Reading {len(primary_keys)} primary keys from {OHLC_FEATURE_VIEW}.')
     # breakpoint()
     features : pd.DataFrame = feature_view.read(primary_keys)
 
     # sort ohlc by product_id and timestamp
     features = features.sort_values(by=['product_id', 'timestamp'])
+
+    # After retrieving the features, print the first few rows to check data existence
+    if not features.empty:
+        print(features.head())
+    else:
+        print("The DataFrame is empty.")
 
     return features
 
