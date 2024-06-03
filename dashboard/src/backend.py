@@ -72,7 +72,7 @@ def get_features(
         current_unix_seconds,
         product_ids)
     
-    logger.info("First 10 primary keys:", primary_keys[:10])
+    logger.info(f"First 10 primary keys: {primary_keys[:10]}")
     logger.info(f'Reading {len(primary_keys)} primary keys from {OHLC_FEATURE_VIEW}.')
     # breakpoint()
     features : pd.DataFrame = feature_view.read(primary_keys)
