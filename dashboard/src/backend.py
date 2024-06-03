@@ -15,7 +15,7 @@ load_env_vars()
 logger = logging.getLogger()
 
 OHLC_FEATURE_GROUP = FeatureGroupConfig(
-    name='ohlc_feature_group',
+    name='ohlc_feature_group_v2',
     version=3,
     description='OHLC data for crypto products',
     primary_key=['timestamp', 'product_id'],
@@ -24,7 +24,7 @@ OHLC_FEATURE_GROUP = FeatureGroupConfig(
 )
 
 OHLC_FEATURE_VIEW = FeatureViewConfig(
-    name='ohlc_feature_view',
+    name='ohlc_feature_view_v2',
     version=4,
     description='OHLC feature view',
     feature_group_config=OHLC_FEATURE_GROUP,
