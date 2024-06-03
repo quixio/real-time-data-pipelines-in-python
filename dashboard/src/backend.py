@@ -77,6 +77,8 @@ def get_features(
     # breakpoint()
     features : pd.DataFrame = feature_view.read(primary_keys)
 
+    logger.info(f"DataFrame shape after read: {features.shape}")
+
     # sort ohlc by product_id and timestamp
     features = features.sort_values(by=['product_id', 'timestamp'])
 
