@@ -15,7 +15,7 @@ load_env_vars()
 KAFKA_INPUT_TOPIC = os.environ["input"]
 USE_LOCAL_KAFKA = True if os.environ.get('use_local_kafka') is not None else False
 OHLC_FEATURE_GROUP = FeatureGroupConfig(
-    name='ohlc_feature_group',
+    name='ohlc_feature_group_v2',
     version=3,
     description='OHLC data for crypto products',
     primary_key=['timestamp', 'product_id'],
