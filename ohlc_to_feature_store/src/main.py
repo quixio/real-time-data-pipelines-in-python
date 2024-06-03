@@ -30,7 +30,6 @@ def run():
     # Define Quix your application and settings
     app = get_app(
         consumer_group='json_ohlc_consumer_group2',
-        auto_offset_reset='earliest',
         use_local_kafka=USE_LOCAL_KAFKA,    
     )
     
