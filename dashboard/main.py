@@ -73,7 +73,8 @@ while True:
         from src.plot import get_candlestick_plot
 
         # Drop NaNs so that Bokeh will work.
-        features.dropna(inplace=True)
+        # Replace NaN, inf, and -inf values with 0
+        features.replace([np.nan, np.inf, -np.inf], 0, inplace=True)
 
         p = get_candlestick_plot(features, window_seconds=10,
                                  last_minutes=LAST_MINUTES)
