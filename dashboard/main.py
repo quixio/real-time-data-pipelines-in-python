@@ -73,7 +73,7 @@ while True:
         from src.plot import get_candlestick_plot
 
         # Option 2: Fill NaN values with a specific value, such as the previous value in the column
-        features.fillna(method='ffill', inplace=True)
+        features.interpolate(method='linear', inplace=True)
 
         p = get_candlestick_plot(features, window_seconds=10,
                                  last_minutes=LAST_MINUTES)
