@@ -72,8 +72,8 @@ while True:
         # plot it as Candle chart
         from src.plot import get_candlestick_plot
 
-        # Replace NaN or infinite values with None before plotting
-        features = features.where(pd.notnull(features), None)
+        # Option 2: Fill NaN values with a specific value, such as the previous value in the column
+        features.fillna(method='ffill', inplace=True)
 
         p = get_candlestick_plot(features, window_seconds=10,
                                  last_minutes=LAST_MINUTES)
