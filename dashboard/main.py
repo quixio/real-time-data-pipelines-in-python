@@ -5,6 +5,7 @@ import time
 import os
 import datetime
 import logging
+import numpy as np
 
 from src.utils import initialize_logger, load_env_vars
 from src.backend import get_features
