@@ -73,8 +73,7 @@ while True:
         from src.plot import get_candlestick_plot
 
         # Replace NaN or infinite values with None before plotting
-        features.replace([np.inf, -np.inf], None, inplace=True)
-        features.fillna(value=None, inplace=True)
+        features = features.where(pd.notnull(features), None)
 
         p = get_candlestick_plot(features, window_seconds=10,
                                  last_minutes=LAST_MINUTES)
