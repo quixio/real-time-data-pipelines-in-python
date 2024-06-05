@@ -47,6 +47,32 @@ def generate_list_primary_keys(
 
     return primary_keys
 
+def temp():
+
+    import hsfs
+    
+    # Establish connection
+    connection = hsfs.connection()
+
+    # Get the feature store
+    fs = connection.get_feature_store(name='paustemplate_featurestore')
+
+    # Retrieve the feature view
+    fv = fs.get_feature_view('ohlc_feature_view', version=4)
+
+    # Read all data from the feature view
+    features_raw = fv.read()
+
+    # Convert to DataFrame
+    features_df = pd.DataFrame(features_raw)
+
+    # Print the entire DataFrame
+    print(features_df)
+
+    # Close the connection
+    connection.close()
+
+
 def get_features(
     last_minutes: int = 5,
     current_unix_seconds: Optional[int] = None,
