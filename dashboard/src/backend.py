@@ -74,12 +74,23 @@ def get_features(
         product_ids)
     
     logger.info(f"First 10 primary keys: {primary_keys[:10]}")
-    logger.info(f'Reading {len(primary_keys)} primary keys from {OHLC_FEATURE_VIEW}.')
-    
-    features : pd.DataFrame = feature_view.read(primary_keys)
+    logger.info(f'Reading {len(primary_keys)} primary keys from {OHLC_FEATURE_VIEW}.")
+
+    # Read raw data from the feature view
+    features_raw = feature_view.read(primary_keys)
+    logger.info(f"Raw data retrieved: {features_raw}")
+
+    # Convert raw data to DataFrame
+    features = pd.DataFrame(features_raw)
     logger.info(f"DataFrame shape after read: {features.shape}")
     logger.info(f"DataFrame columns: {features.columns}")
     logger.info(f"DataFrame head: {features.head()}")
+
+    # Check if the DataFrame contains any non-None values
+    if features.isnull().all().all():
+        logger.error("All values in the DataFrame are None. Check the feature store data and configuration.")
+    else:
+        logger.info("DataFrame contains valid data.")
 
     # sort ohlc by product_id and timestamp
     features = features.sort_values(by=['product_id', 'timestamp'])
