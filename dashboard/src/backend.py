@@ -64,6 +64,7 @@ def get_features(
 
     logger.info("Getting feature view to read data from")
     feature_view = feature_store.get_or_create_feature_view(OHLC_FEATURE_VIEW)
+    logger.info(f"Feature view details: {feature_view}")
 
     logger.info("Generating primary keys to read data from")
     from_unix_seconds = current_unix_seconds - last_minutes * 60
@@ -74,10 +75,11 @@ def get_features(
     
     logger.info(f"First 10 primary keys: {primary_keys[:10]}")
     logger.info(f'Reading {len(primary_keys)} primary keys from {OHLC_FEATURE_VIEW}.')
-    # breakpoint()
+    
     features : pd.DataFrame = feature_view.read(primary_keys)
-
     logger.info(f"DataFrame shape after read: {features.shape}")
+    logger.info(f"DataFrame columns: {features.columns}")
+    logger.info(f"DataFrame head: {features.head()}")
 
     # sort ohlc by product_id and timestamp
     features = features.sort_values(by=['product_id', 'timestamp'])
