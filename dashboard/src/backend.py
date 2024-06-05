@@ -74,7 +74,7 @@ def get_features(
         product_ids)
     
     logger.info(f"First 10 primary keys: {primary_keys[:10]}")
-    logger.info(f'Reading {len(primary_keys)} primary keys from {OHLC_FEATURE_VIEW}.")
+    logger.info(f"Reading {len(primary_keys)} primary keys from {OHLC_FEATURE_VIEW}.")
 
     # Read raw data from the feature view
     features_raw = feature_view.read(primary_keys)
